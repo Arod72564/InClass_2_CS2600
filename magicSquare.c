@@ -15,18 +15,21 @@ int main(){
     int *countPtr = &count;
     srand(time(NULL));
 
+    // Use function to check if magic square on array that is correct
     if(checkIfLoShu(loShuArray)){
         printf("This is a Lo Shu Magic Square\n");
     } else {
         printf("This is NOT a Lo Shu Magic Square\n");
     }
 
+    // Use function to check if magic square on array that is NOT correct
     if(checkIfLoShu(notLoShuArray)){
         printf("This is a Lo Shu Magic Square\n");
     } else {
         printf("This is NOT a Lo Shu Magic Square\n");
     }
 
+    // loop to create an randomized array that will break out when it is a Lo Shu Square
     do{
         createMagicSquare(randomArray, countPtr);
     }while(!checkIfLoShu(randomArray));
@@ -38,6 +41,14 @@ int main(){
     return 0;
 }
 
+
+/*
+ * This function is used to check if the array is a Lo Shu Magic Square. It uses a pointer to iterate through the array
+ * checking if each space has 1-9. It also checks to see if each row, column, and diagonol is equal to 15.
+ * 
+ * Parameters: It takes one 2d array of 3x3 size
+ * Returns: returns 1 if it is a Lo Shu Square, and 0 if it is not
+ */
 int checkIfLoShu(int *array){
     // checking if the array has 1-9
     int checkNum = 1;
@@ -71,8 +82,14 @@ int checkIfLoShu(int *array){
     }
 }
 
+
+/*
+ * This function fills a 3x3 array with 1-9 in random order. Numbers 1-9 will not be repeated and only used once in the array.
+ * 
+ * Parameters: one 2d array of 3x3 size, & pointer to counter variable
+ * Returns: function does not return anything
+ */
 void createMagicSquare(int *array, int *countPtr){
-    time_t t;
     int num = 0;
 
     for(int i = 0; i < 9; i++){ //for each index of array generate rand number and assign
@@ -88,9 +105,17 @@ void createMagicSquare(int *array, int *countPtr){
 
         }
     }
-    (*countPtr)++; //iterate count when function is done
+
+    (*countPtr)++; //iterate counter variable when function is done
 }
 
+
+/*
+ * This function displays an array of 3x3 size in matrix format
+ * 
+ * Parameters: one 2d array of 3x3 size
+ * Returns: function does not return anything
+ */
 void displayArray(int *array){
     printf("\n[%d %d %d]\n[%d %d %d]\n[%d %d %d]\n",*(array), *(array+1), *(array+2), *(array+3), *(array+4), *(array+5), *(array+6), *(array+7), *(array+8));
 }
